@@ -1,7 +1,7 @@
 import React from 'react';
 import { StyleSheet, Text, TouchableOpacity } from 'react-native';
-import { Colors } from './Colors';
-import { Fonts } from './Fonts';
+import { Colors } from '../../assets/global-styles/Colors';
+import { Fonts } from '../../assets/global-styles/Fonts';
 
 interface Button {
     btnText: string;
@@ -11,7 +11,7 @@ export function RedButton({btnText}: Button) {
   return (
       <TouchableOpacity style={styles.button}>
         <Text style={styles.buttonText}>
-            {btnText}
+          {btnText}
         </Text>
       </TouchableOpacity>
   );

@@ -2,15 +2,16 @@ import React from 'react';
 import {Image, SafeAreaView, StyleSheet, Text, TextInput, TouchableOpacity, View} from 'react-native';
 import {Colors} from '../assets/global-styles/Colors';
 import {Fonts} from '../assets/global-styles/Fonts';
-import { Input } from '../auth/Input';
-import { Header } from '../assets/global-styles/Header';
-import { RedButton } from '../assets/global-styles/RedButton';
+import { Input } from '../components/auth/Input';
+import { Header } from '../components/global/Header';
+import { RedButton } from '../components/global/RedButton';
+
 
 export function SignUp({navigation}: any) {
   return (
     <SafeAreaView style={styles.container}>
       <Header title='Sign Up' onPress={() => {}}/>
-      <Input name='Name'/>
+      <Input name='Name' />
       <Input name='Email'/>
       <Input name='Password'/>
       <View style={styles.otherPageNav}>
