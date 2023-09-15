@@ -1,26 +1,48 @@
-import React from 'react';
-import {Image, SafeAreaView, StyleSheet, Text, TextInput, TouchableOpacity, View} from 'react-native';
+import React, { useState } from 'react';
+import {Image, SafeAreaView, StyleSheet, Text, TouchableOpacity, View, Alert} from 'react-native';
 import {Colors} from '../assets/global-styles/Colors';
 import {Fonts} from '../assets/global-styles/Fonts';
 import { Input } from '../components/auth/Input';
 import { Header } from '../components/global/Header';
 import { RedButton } from '../components/global/RedButton';
+import { signInWithEmailAndPassword } from 'firebase/auth';
+import { auth } from '../config/firebaseConfig';
+import { useNavigation } from '@react-navigation/native';
 
 
 
-export function LogIn({navigation}: any) {
+
+export function LogIn() {
+  const navigation: any = useNavigation();
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
+
+  const handleLogin = async () => {
+  await signInWithEmailAndPassword(auth, email, password)
+  .then((userCredential) => {
+    const user = userCredential.user;
+    const id = userCredential.user.uid;
+    navigation.navigate("Home");
+    console.log(id);
+  })
+  .catch((error) => {
+    const errorCode = error.code;
+    const errorMessage = error.message;
+    Alert.alert(errorMessage);
+  });
+  }
   return (
     <SafeAreaView style={styles.container}>
       <Header title='Log In' onPress={() => navigation.goBack()}/>
-      <Input name='Email'/>
-      <Input name='Password'/>
+      <Input name='Email' setEmail={setEmail}/>
+      <Input name='Password' setPassword={setPassword}/>
       <View style={styles.otherPageNav}>
         <Text style={styles.otherPageText}>Forgot your password?</Text>
         <TouchableOpacity onPress={() => navigation.navigate("Forgot")}>
             <Image source={require('../assets/images/round-arrow_right_alt-24px.png')}/>
         </TouchableOpacity>
       </View>
-      <RedButton btnText='LOG IN'/>
+      <RedButton btnText='LOG IN' onPress={handleLogin}/>
       <TouchableOpacity style={styles.align} onPress={() => navigation.navigate("SignUp")}>
         <Text style={styles.otherPageText}>Doesn't have an accout? Sing up right here!</Text>      
       </TouchableOpacity>

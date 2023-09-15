@@ -1,4 +1,4 @@
-package com.desafio02;
+package com.compass_sales;
 
 import android.app.Application;
 import com.facebook.react.PackageList;

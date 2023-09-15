@@ -73,9 +73,9 @@ android {
 
     compileSdkVersion rootProject.ext.compileSdkVersion
 
-    namespace "com.desafio02"
+    namespace "com.compass_sales"
     defaultConfig {
-        applicationId "com.desafio02"
+        applicationId "com.compass_sales"
         minSdkVersion rootProject.ext.minSdkVersion
         targetSdkVersion rootProject.ext.targetSdkVersion
         versionCode 1

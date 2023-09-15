@@ -15,9 +15,9 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "13B07F861A680F5B00A75B9A"
-               BuildableName = "Desafio02.app"
-               BlueprintName = "Desafio02"
-               ReferencedContainer = "container:Desafio02.xcodeproj">
+               BuildableName = "compass_sales.app"
+               BlueprintName = "compass_sales"
+               ReferencedContainer = "container:compass_sales.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
       </BuildActionEntries>
@@ -33,9 +33,9 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "00E356ED1AD99517003FC87E"
-               BuildableName = "Desafio02Tests.xctest"
-               BlueprintName = "Desafio02Tests"
-               ReferencedContainer = "container:Desafio02.xcodeproj">
+               BuildableName = "compass_salesTests.xctest"
+               BlueprintName = "compass_salesTests"
+               ReferencedContainer = "container:compass_sales.xcodeproj">
             </BuildableReference>
          </TestableReference>
       </Testables>
@@ -55,9 +55,9 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "13B07F861A680F5B00A75B9A"
-            BuildableName = "Desafio02.app"
-            BlueprintName = "Desafio02"
-            ReferencedContainer = "container:Desafio02.xcodeproj">
+            BuildableName = "compass_sales.app"
+            BlueprintName = "compass_sales"
+            ReferencedContainer = "container:compass_sales.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
    </LaunchAction>
@@ -72,9 +72,9 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "13B07F861A680F5B00A75B9A"
-            BuildableName = "Desafio02.app"
-            BlueprintName = "Desafio02"
-            ReferencedContainer = "container:Desafio02.xcodeproj">
+            BuildableName = "compass_sales.app"
+            BlueprintName = "compass_sales"
+            ReferencedContainer = "container:compass_sales.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
    </ProfileAction>

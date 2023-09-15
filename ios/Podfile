@@ -25,7 +25,7 @@ if linkage != nil
   use_frameworks! :linkage => linkage.to_sym
 end
 
-target 'Desafio02' do
+target 'compass_sales' do
   config = use_native_modules!
 
   # Flags change depending on the env values.
@@ -45,7 +45,7 @@ target 'Desafio02' do
     :app_path => "#{Pod::Config.instance.installation_root}/.."
   )
 
-  target 'Desafio02Tests' do
+  target 'compass_salesTests' do
     inherit! :complete
     # Pods for testing
   end

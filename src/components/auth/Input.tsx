@@ -5,20 +5,29 @@ import { Colors } from "../../assets/global-styles/Colors";
 
 interface placeString {
     name: string;
+    setEmail?: any;
+    setPassword?: any;
+    setName?: any
+    
 }
-export function Input({name}: placeString) {
+export function Input({name, setEmail, setPassword, setName}: placeString) {
     const [pass, setPass] = useState(false);
     const [checkValidEmail, setCheckValidEmail] = useState(false);
     const [checkValidPassword, setCheckValidPassword] = useState(false);
     const [texting, setTexting] = useState(false);
+    const [emailInput, setEmailInput]: any = useState();
+    const [passwordInput, setPasswordInput]: any = useState();
+    const [nameInput, setNameInput]: any = useState();
 
     const placeholderHandler = (text: string) => {
         setTexting(true);
         if(name === 'Email') {
+            setEmail(text);
+            setEmailInput(text);
             let re = /\S+@\S+\.\S+/;
             let regex = /^[\+]?[(]?[0-9]{3}[)]?[-\s\.]?[0-9]{3}[-\s\.]?[0-9]{4-6}$/im; 
             if(re.test(text) || regex.test(text)) {
-                setCheckValidEmail(false)
+                setCheckValidEmail(false);
             } else {
                 setCheckValidEmail(true);
             }
@@ -27,13 +36,19 @@ export function Input({name}: placeString) {
                 setCheckValidEmail(false);
             }
         }
-        if(text === '') {
-            setTexting(false);
+        if(name === 'Name') {
+            setName(text);
+            setNameInput(text);
+            if(text === '') {
+                setTexting(false);
+            }
         }
 
         if(name === 'Password') {
             setPass(true);
-            if(text.length >= 4) {
+            setPassword(text);
+            setPasswordInput(text);
+            if(text.length >= 6) {
                 setCheckValidPassword(false);
             } else {
                 setCheckValidPassword(true);
@@ -53,7 +68,7 @@ export function Input({name}: placeString) {
                 <View style={[styles.inputs, checkValidEmail && styles.errorInputs]}>
                     <Text style={[styles.hidden, texting && styles.highPlaceholderShown, texting && checkValidEmail && styles.highPlaceholderShownError ]}>{name}</Text>
                     <View style={styles.viewInputsAndImages}>
-                        <TextInput autoCorrect={false} style={styles.placeholder} placeholder={name} secureTextEntry={pass} onChangeText={(text) => placeholderHandler(text)}/>
+                        <TextInput autoCorrect={false} style={styles.placeholder} placeholder={name} secureTextEntry={pass} value={emailInput} onChangeText={(text) => placeholderHandler(text)}/>
                         {checkValidEmail ? <Image style={styles.checkImages} source={require('../../assets/images/outline-close-24px.png')}/> : <Image style={[styles.hiddenCheckImages, texting && styles.checkImages]} source={require('../../assets/images/outline-check-24px.png')}/>}
                     </View>
                 </View>
@@ -69,12 +84,12 @@ export function Input({name}: placeString) {
                 <View style={[styles.inputs, checkValidPassword && styles.errorInputs]}>
                     <Text style={[styles.hidden, texting && styles.highPlaceholderShown, texting && checkValidPassword && styles.highPlaceholderShownError ]}>{name}</Text>
                     <View style={styles.viewInputsAndImages}>
-                        <TextInput autoCorrect={false} style={styles.placeholder} placeholder={name} secureTextEntry={pass} onChangeText={(text) => placeholderHandler(text)}/>
+                        <TextInput autoCorrect={false} style={styles.placeholder} placeholder={name} secureTextEntry={pass} value={passwordInput} onChangeText={(text) => placeholderHandler(text)}/>
                         {checkValidPassword ? <Image style={styles.checkImages} source={require('../../assets/images/outline-close-24px.png')}/> : <Image style={[styles.hiddenCheckImages, texting && styles.checkImages]} source={require('../../assets/images/outline-check-24px.png')}/>}
                     </View>
                 </View>
                 <View style={styles.viewErrorText}>
-                    {checkValidPassword ? <Text style={styles.errorText}>Invalid Password, put at least 4 characters</Text> : null}
+                    {checkValidPassword ? <Text style={styles.errorText}>Invalid Password, put at least 6 characters</Text> : null}
                 </View>
             </>
         );
@@ -84,7 +99,7 @@ export function Input({name}: placeString) {
     <View style={[styles.inputs]}>
         <Text style={[styles.hidden, texting && styles.highPlaceholderShown]}>{name}</Text>
         <View style={styles.viewInputsAndImages}>
-            <TextInput  autoCorrect={false} style={styles.placeholder} placeholder={name} secureTextEntry={pass} onChangeText={(text) => placeholderHandler(text)}/>
+            <TextInput  autoCorrect={false} value={nameInput} style={styles.placeholder} placeholder={name} secureTextEntry={pass} onChangeText={(text) => placeholderHandler(text)}/>
             <Image style={[styles.hiddenCheckImages, texting && styles.checkImages]} source={require('../../assets/images/outline-check-24px.png')}/>
         </View>
     </View>

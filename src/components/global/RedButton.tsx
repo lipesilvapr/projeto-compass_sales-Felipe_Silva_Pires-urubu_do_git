@@ -5,11 +5,12 @@ import { Fonts } from '../../assets/global-styles/Fonts';
 
 interface Button {
     btnText: string;
+    onPress: any;
 }
 
-export function RedButton({btnText}: Button) {
+export function RedButton({btnText, onPress}: Button) {
   return (
-      <TouchableOpacity style={styles.button}>
+      <TouchableOpacity onPress={onPress} style={styles.button}>
         <Text style={styles.buttonText}>
           {btnText}
         </Text>
