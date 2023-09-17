@@ -28,7 +28,6 @@ export function Home() {
         await signOut(auth).then(() => {
             console.log('sucess');
             AsyncStorage.setItem('user', '');
-            AsyncStorage.setItem('logged', '');
             navigation.replace('SignUp');
         }).catch((error) => {
             console.log(error.message);

@@ -2,11 +2,11 @@ import React from "react";
 import { SafeAreaView, StatusBar, StyleSheet } from "react-native";
 import { NavigationContainer } from "@react-navigation/native";
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
-import { SignUp } from "./SignUp";
-import { LogIn } from "./LogIn";
-import { ForgotYourPassword } from "./ForgotYourPassword";
-import { Colors } from "../assets/global-styles/Colors";
-import { Home } from "./Home";
+import { SignUp } from "./screens/SignUp";
+import { LogIn } from "./screens/LogIn";
+import { ForgotYourPassword } from "./screens/ForgotYourPassword";
+import { Colors } from "./assets/global-styles/Colors";
+import { Home } from "./screens/Home";
 
 const Stack = createNativeStackNavigator();
 export function App() {

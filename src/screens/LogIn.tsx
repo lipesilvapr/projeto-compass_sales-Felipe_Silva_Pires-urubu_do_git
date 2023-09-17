@@ -29,7 +29,6 @@ export function LogIn() {
       if(auth.currentUser?.displayName){
         AsyncStorage.setItem('name', auth.currentUser.displayName);
       }
-      AsyncStorage.setItem('logedd', 'true');
       navigation.replace("Home");
     })
     .catch((error) => {
