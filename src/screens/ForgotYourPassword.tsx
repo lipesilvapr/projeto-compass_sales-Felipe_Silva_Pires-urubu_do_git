@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import {Image, SafeAreaView, StyleSheet, Text, TextInput, TouchableOpacity, View} from 'react-native';
+import { SafeAreaView, StyleSheet, Text, View} from 'react-native';
 import {Colors} from '../assets/global-styles/Colors';
 import {Fonts} from '../assets/global-styles/Fonts';
 import { Input } from '../components/auth/Input';
@@ -20,7 +20,6 @@ export function ForgotYourPassword() {
     
   })
   .catch((error) => {
-    const errorCode = error.code;
     const errorMessage = error.message;
     console.log(errorMessage);
   });

@@ -1,30 +1,45 @@
-import React, { useState } from "react";
-import { StyleSheet, Text, TouchableOpacity, View } from "react-native";
+import React, { useEffect, useState } from "react";
+import { StyleSheet, Text, View } from "react-native";
 import { Fonts } from "../assets/global-styles/Fonts";
 import { RedButton } from "../components/global/RedButton";
 import { signOut } from "firebase/auth";
-import { auth, db } from "../config/firebaseConfig";
+import { auth } from "../config/firebaseConfig";
 import { useNavigation } from "@react-navigation/native";
-import { collection, getDocs, doc, getDoc } from "firebase/firestore";
+import AsyncStorage from "@react-native-async-storage/async-storage";
+
+
 
 
 
 export function Home() {
     const navigation: any = useNavigation();
+    const [userName,setUserName] = useState('');
+    const getName = async () => {
+        const name = await AsyncStorage.getItem('name').then((textName) => {
+            if(textName)
+            setUserName(textName);
+        });
+    }
+    useEffect(() => {
+       getName(); 
+    })
 
     const handleLogout = async () => {
         await signOut(auth).then(() => {
             console.log('sucess');
-            navigation.navigate("LogIn");
-          }).catch((error) => {
+            AsyncStorage.setItem('user', '');
+            AsyncStorage.setItem('logged', '');
+            navigation.replace('SignUp');
+        }).catch((error) => {
             console.log(error.message);
-          });
+        });
+        
     }
 
     return (
         <View style={styles.container}>
             <Text style={styles.homeTitle}>Hello</Text>
-            <Text style={styles.homeTitle}>{auth.currentUser?.displayName}</Text>
+            <Text style={styles.homeTitle}>{userName}</Text>
             <RedButton btnText="LOGOUT" onPress={handleLogout}/>
         </View>
     );

@@ -1,13 +1,13 @@
-import React, { useState } from "react";
+import React, { Dispatch, SetStateAction, useState } from "react";
 import { View, TextInput, StyleSheet, Text, Image } from "react-native";
 import { Fonts } from "../../assets/global-styles/Fonts";
 import { Colors } from "../../assets/global-styles/Colors";
 
 interface placeString {
     name: string;
-    setEmail?: any;
-    setPassword?: any;
-    setName?: any
+    setEmail?: Dispatch<SetStateAction<string>>;
+    setPassword?: Dispatch<SetStateAction<string>>;
+    setName?: Dispatch<SetStateAction<string>>;
     
 }
 export function Input({name, setEmail, setPassword, setName}: placeString) {
@@ -15,13 +15,14 @@ export function Input({name, setEmail, setPassword, setName}: placeString) {
     const [checkValidEmail, setCheckValidEmail] = useState(false);
     const [checkValidPassword, setCheckValidPassword] = useState(false);
     const [texting, setTexting] = useState(false);
-    const [emailInput, setEmailInput]: any = useState();
-    const [passwordInput, setPasswordInput]: any = useState();
-    const [nameInput, setNameInput]: any = useState();
+    const [emailInput, setEmailInput] = useState('');
+    const [passwordInput, setPasswordInput] = useState('');
+    const [nameInput, setNameInput] = useState('');
 
     const placeholderHandler = (text: string) => {
         setTexting(true);
         if(name === 'Email') {
+            if(setEmail)
             setEmail(text);
             setEmailInput(text);
             let re = /\S+@\S+\.\S+/;
@@ -37,6 +38,7 @@ export function Input({name, setEmail, setPassword, setName}: placeString) {
             }
         }
         if(name === 'Name') {
+            if(setName)
             setName(text);
             setNameInput(text);
             if(text === '') {
@@ -46,6 +48,7 @@ export function Input({name, setEmail, setPassword, setName}: placeString) {
 
         if(name === 'Password') {
             setPass(true);
+            if(setPassword)
             setPassword(text);
             setPasswordInput(text);
             if(text.length >= 6) {

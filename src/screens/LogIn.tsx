@@ -8,6 +8,9 @@ import { RedButton } from '../components/global/RedButton';
 import { signInWithEmailAndPassword } from 'firebase/auth';
 import { auth } from '../config/firebaseConfig';
 import { useNavigation } from '@react-navigation/native';
+import AsyncStorage from '@react-native-async-storage/async-storage';
+
+
 
 
 
@@ -17,19 +20,23 @@ export function LogIn() {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
 
+
   const handleLogin = async () => {
-  await signInWithEmailAndPassword(auth, email, password)
-  .then((userCredential) => {
-    const user = userCredential.user;
-    const id = userCredential.user.uid;
-    navigation.navigate("Home");
-    console.log(id);
-  })
-  .catch((error) => {
-    const errorCode = error.code;
-    const errorMessage = error.message;
-    Alert.alert(errorMessage);
-  });
+    await signInWithEmailAndPassword(auth, email, password)
+    .then(async (userCredential) => {
+      const user = userCredential.user;
+      AsyncStorage.setItem('user', email);
+      if(auth.currentUser?.displayName){
+        AsyncStorage.setItem('name', auth.currentUser.displayName);
+      }
+      AsyncStorage.setItem('logedd', 'true');
+      navigation.replace("Home");
+    })
+    .catch((error) => {
+      const errorCode = error.code;
+      const errorMessage = error.message;
+      Alert.alert(errorMessage);
+    });
   }
   return (
     <SafeAreaView style={styles.container}>

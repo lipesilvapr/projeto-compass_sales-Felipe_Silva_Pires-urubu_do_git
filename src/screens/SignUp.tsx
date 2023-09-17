@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import {Image, SafeAreaView, StyleSheet, Text, TouchableOpacity, View, Alert} from 'react-native';
 import {Colors} from '../assets/global-styles/Colors';
 import {Fonts} from '../assets/global-styles/Fonts';
@@ -9,6 +9,8 @@ import { auth, db } from '../config/firebaseConfig';
 import { createUserWithEmailAndPassword, updateProfile } from 'firebase/auth';
 import { useNavigation } from '@react-navigation/native';
 import { collection, addDoc } from "firebase/firestore"; 
+import AsyncStorage from '@react-native-async-storage/async-storage';
+
 
 
 
@@ -18,6 +20,24 @@ export function SignUp() {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [name, setName] = useState('');
+  const [att, setAtt] = useState(false); 
+  const getLog = async () => {
+      try{
+          const data = await AsyncStorage.getItem('user');
+          if(data)
+          setAtt(true);
+          console.log(data);
+        }catch (e){
+          console.log(e);
+        }
+        
+  } 
+  useEffect (() => {
+    getLog();
+    if(att) {
+      navigation.replace('Home');
+    };
+  },[att]);
   
 
   const handleSignUp = async () => {
@@ -25,19 +45,20 @@ export function SignUp() {
     try {
       const response = await createUserWithEmailAndPassword(auth, email, password)
       const user = response.user;
-         const docRef = await addDoc(collection(db, "users"), {
-          name: name,
-          email: email,
-        });
-        await updateProfile(user, {
-          displayName: name,
-        });
-        console.log("Document written with ID: ", docRef.id);
-        console.log(name);
-      } catch (e) {
-        Alert.alert('Authentication error: ', String(e));
-      } 
-    navigation.navigate("LogIn");
+      const docRef = await addDoc(collection(db, "users"), {
+        name: name,
+        email: email,
+      });
+      await updateProfile(user, {
+        displayName: name,
+      });
+      console.log("Document written with ID: ", docRef.id);
+      console.log(name);
+      navigation.navigate("LogIn");
+    } catch (e) {
+      Alert.alert('Authentication error: ', String(e));
+    } 
+    
   }
   
   return (

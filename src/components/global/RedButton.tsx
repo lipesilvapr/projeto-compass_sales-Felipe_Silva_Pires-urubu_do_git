@@ -1,11 +1,11 @@
 import React from 'react';
-import { StyleSheet, Text, TouchableOpacity } from 'react-native';
+import { GestureResponderEvent, StyleSheet, Text, TouchableOpacity } from 'react-native';
 import { Colors } from '../../assets/global-styles/Colors';
 import { Fonts } from '../../assets/global-styles/Fonts';
 
 interface Button {
     btnText: string;
-    onPress: any;
+    onPress: (event: GestureResponderEvent) => void;
 }
 
 export function RedButton({btnText, onPress}: Button) {
