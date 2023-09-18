@@ -19,6 +19,18 @@ The **Compass Sales** is a React Native project, made by **Felipe Silva Pires** 
 
 Let Metro Bundler run in its _own_ terminal. Open a _new_ terminal from the _root_ of the React Native project. Run the following command to start your _Android_ app:
 
+Install dependencies
+
+```bash
+# using npm
+npm install
+
+# using yarn
+yarn
+```
+
+Starting the project
+
 ```bash
 # using npm
 npm start
@@ -41,7 +53,7 @@ npm run android
 yarn android
 ```
 
-If everything is set up _correctly_, you should see your new app running in your _Android Emulator_ or on your phisical device.
+If everything is set up _correctly_, you should see the app running in your _Android Emulator_ or on your phisical device.
 
 ## Branches
 
