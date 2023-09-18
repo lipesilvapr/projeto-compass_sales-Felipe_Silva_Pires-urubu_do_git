@@ -50,7 +50,7 @@ export function LogIn() {
       </View>
       <RedButton btnText='LOG IN' onPress={handleLogin}/>
       <TouchableOpacity style={styles.align} onPress={() => navigation.navigate("SignUp")}>
-        <Text style={styles.otherPageText}>Doesn't have an accout? Sing up right here!</Text>      
+        <Text style={styles.otherPageText}>Doesn't have an accout? Sign up right here!</Text>      
       </TouchableOpacity>
     </SafeAreaView>
   );

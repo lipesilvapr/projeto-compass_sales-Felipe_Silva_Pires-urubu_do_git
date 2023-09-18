@@ -26,9 +26,7 @@ export function SignUp() {
           const data = await AsyncStorage.getItem('user');
           if(data)
           setAtt(true);
-          console.log(data);
         }catch (e){
-          console.log(e);
         }
         
   } 
@@ -52,8 +50,6 @@ export function SignUp() {
       await updateProfile(user, {
         displayName: name,
       });
-      console.log("Document written with ID: ", docRef.id);
-      console.log(name);
       navigation.navigate("LogIn");
     } catch (e) {
       Alert.alert('Authentication error: ', String(e));

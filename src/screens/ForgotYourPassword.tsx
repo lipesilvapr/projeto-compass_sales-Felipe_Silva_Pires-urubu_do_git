@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { SafeAreaView, StyleSheet, Text, View} from 'react-native';
+import { SafeAreaView, StyleSheet, Text, View, Alert} from 'react-native';
 import {Colors} from '../assets/global-styles/Colors';
 import {Fonts} from '../assets/global-styles/Fonts';
 import { Input } from '../components/auth/Input';
@@ -21,7 +21,7 @@ export function ForgotYourPassword() {
   })
   .catch((error) => {
     const errorMessage = error.message;
-    console.log(errorMessage);
+    Alert.alert(errorMessage);
   });
   }
 
